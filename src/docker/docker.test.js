@@ -10,3 +10,12 @@ it(
             .forExitCode(expectation => expectation.toBe(0));
     },
 );
+
+it(
+    'tests if make build fails outside CI environment',
+    async () => {
+        await expect.command('make build')
+            .withStdin('n')
+            .forExitCode(expectation => expectation.toBe(2));
+    }
+);

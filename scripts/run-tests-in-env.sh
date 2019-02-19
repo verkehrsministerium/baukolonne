@@ -29,8 +29,8 @@ debian="$(docker run \
        --rm \
        --mount src="${GIT_ROOT}",target=/project/,type=bind \
        --workdir /project \
-       debian:stretch \
-       sh -c "apt-get update && apt-get install -y make nodejs && make test 2>&1" | \
+       node:stretch \
+       make test 2>&1 | \
        tee /dev/tty)"
 
 mkdir -p test-results
@@ -38,8 +38,9 @@ mkdir -p test-results
 for test in debian
 do
     eval "content=\${${test}}"
-    passed="$(echo "${content}" | perl -ne 'print if s/^Tests:.*(\d+) passed.*$/$1/g')"
-    total="$(echo "${content}" | perl -ne 'print if s/^Tests:.*(\d+) total.*$/$1/g')"
+    passed="$(echo "${content}" | perl -ne 'print if s/^.*Tests:.*(\d+).* passed.*$/$1/g')"
+    total="$(echo "${content}" | perl -ne 'print if s/^.*Tests:.*(\d+).* total.*$/$1/g')"
+    
     color="$(map_color "${passed}" "${total}")"
 
     cat > "test-results/${test}.json" <<EOF
