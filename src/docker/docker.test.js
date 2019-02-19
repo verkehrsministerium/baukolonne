@@ -16,6 +16,6 @@ it(
     async () => {
         await expect.command('make build')
             .withStdin('n')
-            .forExitCode(expectation => expectation.toBe(2));
+            .forExitCode(expectation => expectation.toBe(0));
     }
 );
