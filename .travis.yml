@@ -1,0 +1,13 @@
+services:
+  - docker
+script:
+  - ./scripts/run-tests-in-env.sh
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: test-results
+  on:
+    branch: master
