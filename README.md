@@ -1,5 +1,7 @@
 # Baukolonne
 
+![](https://img.shields.io/badge/endpoint.svg?url=https://verkehrsministerium.github.io/baukolonne/debian.json)
+
 Makefiles for easy project version management, continious integration, and project lifecycle management
 
 Once a Makefile is installed in a project it will update itself automatically from
