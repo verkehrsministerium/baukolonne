@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 GIT_ROOT="$(dirname "$(dirname "$(realpath "$0")")")"
 
 map_color() {
